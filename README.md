@@ -5,11 +5,7 @@ This project provides a modern interface for browsing meals, adding items to a c
 
 ---
 
-## 📸 Preview
 
-> *Add screenshots here once uploaded (UI preview, pages, etc.)*
-
----
 
 ## ✨ Features
 
