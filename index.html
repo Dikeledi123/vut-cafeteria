@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUT Eats - Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand vut-brand" href="index.html">
+                    <i class='bx bxs-bowl-rice'></i> VUT Eats
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">News</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <!-- User Section -->
+                    <div class="navbar-nav ms-lg-3 d-flex flex-row align-items-center">
+                        <div id="login-link" class="nav-item">
+                            <a class="nav-link me-3" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class='bx bx-user fs-4'></i>
+                            </a>
+                        </div>
+                        <div id="user-dropdown" class="nav-item dropdown" style="display: none;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-user fs-4'></i> <span id="username-display"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+                                <li><a class="dropdown-item" href="order-history.html">Order History</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </div>
+                        <a class="nav-link position-relative" href="cart.html">
+                            <i class='bx bx-shopping-bag fs-4'></i>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main style="margin-top: 70px;">
+
+        <!-- Hero Carousel -->
+        <section id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active c-item">
+                    <img src="assets/img/burger.jpg" class="d-block w-100 c-img" alt="Today's Special">
+                    <div class="carousel-caption d-none d-md-block text-start bg-dark-overlay">
+                        <h5>Today's Campus Craving!</h5>
+                        <p>Grab our special Classic Beef Burger. The perfect fuel for your study session!</p>
+                        <a href="details.html" class="btn btn-primary vut-btn">Order Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+                <div class="carousel-item c-item">
+                    <img src="assets/img/shake.jpg" class="d-block w-100 c-img" alt="Healthy Start">
+                    <div class="carousel-caption d-none d-md-block text-start bg-dark-overlay">
+                        <h5>Morning Energy Boost!</h5>
+                        <p>Start your day right with our Fresh Fruit & Yoghurt Parfait. Quick, healthy, and delicious.</p>
+                        <a href="details.html" class="btn btn-primary vut-btn">Order Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+                <div class="carousel-item c-item">
+                    <img src="assets/img/breadsand.jpg" class="d-block w-100 c-img" alt="Quick Bites">
+                    <div class="carousel-caption d-none d-md-block text-start bg-dark-overlay">
+                        <h5>Snack Attack? We got you!</h5>
+                        <p>From toasted sandwiches to fresh muffins, find the perfect snack to keep you going.</p>
+                        <a href="snacks.html" class="btn btn-primary vut-btn">View All Snacks <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </section>
+
+        <!-- Discount Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center bg-light rounded-3 p-4">
+                    <div class="col-md-7">
+                        <h2>Student Special!</h2>
+                        <p class="lead">Get 10% off all coffee before 10 AM. Show your student card to redeem.</p>
+                        <a href="drinks.html" class="btn btn-primary vut-btn">See Coffee Menu</a>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="assets/img/coffe.jpg" class="img-fluid rounded-3" alt="Coffee Discount">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Today's Specials -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Today's Specials</h2>
+                <div class="row">
+                    <!-- Special 1 -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="assets/img/wrap.jpg" class="card-img-top" alt="Chicken Wrap">
+                            <div class="card-body">
+                                <h5 class="card-title">Chicken Wrap</h5>
+                                <p class="card-text">Spicy Cajun</p>
+                                <h6>R55.00 <span class="text-muted text-decoration-line-through ms-2">R60.00</span></h6>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="details.html" class="btn btn-outline-primary vut-btn-outline w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Special 2 -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="assets/img/beef lasagna.jpg" class="card-img-top" alt="Beef Lasagna">
+                            <div class="card-body">
+                                <h5 class="card-title">Beef Lasagna</h5>
+                                <p class="card-text">Homestyle</p>
+                                <h6>R70.00 <span class="text-muted text-decoration-line-through ms-2">R75.00</span></h6>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="details.html" class="btn btn-outline-primary vut-btn-outline w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Special 3 -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="assets/img/veganburger.png" class="card-img-top" alt="Vegan Burger">
+                            <div class="card-body">
+                                <h5 class="card-title">Vegan Burger</h5>
+                                <p class="card-text">Plant-Based</p>
+                                <h6>R75.00 <span class="text-muted text-decoration-line-through ms-2">R80.00</span></h6>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="details.html" class="btn btn-outline-primary vut-btn-outline w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Special 4 -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="assets/img/milkshake 2.jpg" class="card-img-top" alt="Fruit Smoothie">
+                            <div class="card-body">
+                                <h5 class="card-title">Fruit Smoothie</h5>
+                                <p class="card-text">Berry Blast</p>
+                                <h6>R40.00 <span class="text-muted text-decoration-line-through ms-2">R45.00</span></h6>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="details.html" class="btn btn-outline-primary vut-btn-outline w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Order -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">How To Order Online</h2>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 p-3 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="step-number">01</div>
+                                <h3 class="card-title fs-4 mt-3">Browse The Menu</h3>
+                                <p class="card-text">See all our delicious breakfast, lunch, and snack options right here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 p-3 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="step-number">02</div>
+                                <h3 class="card-title fs-4 mt-3">Add To Your Order</h3>
+                                <p class="card-text">Select your items, customize if needed, and add them to your order cart.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 p-3 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="step-number">03</div>
+                                <h3 class="card-title fs-4 mt-3">Click & Collect</h3>
+                                <p class="card-text">Pay online and get a notification when your order is ready for pickup. Skip the queue!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h2>Our Newsletter</h2>
+                        <p class="lead">Get updates on new menu items, special discounts, and extended hours during exam weeks.</p>
+                        <form class="d-flex mt-4" id="newsletterForm">
+                            <input class="form-control me-2" type="email" placeholder="Enter your email" aria-label="Email" required>
+                            <button class="btn btn-primary vut-btn text-nowrap" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4 vut-brand">
+                        <i class='bx bxs-bowl-rice'></i> VUT Eats
+                    </h6>
+                    <p>Fueling your campus life. Fresh, fast, and affordable food for the VUT community.</p>
+                    <div>
+                        <a href="#" class="me-3 text-white-50"><i class="bx bxl-facebook-circle fs-4"></i></a>
+                        <a href="#" class="me-3 text-white-50"><i class="bx bxl-instagram-alt fs-4"></i></a>
+                        <a href="#" class="me-3 text-white-50"><i class="bx bxl-twitter fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">About</h6>
+                    <p><a href="about.html" class="text-white-50">About Us</a></p>
+                    <p><a href="contact.html" class="text-white-50">Opening Hours</a></p>
+                    <p><a href="blog.html" class="text-white-50">News & Events</a></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Menu</h6>
+                    <p><a href="breakfast.html" class="text-white-50">Breakfast</a></p>
+                    <p><a href="lunch.html" class="text-white-50">Lunch</a></p>
+                    <p><a href="snacks.html" class="text-white-50">Snacks</a></p>
+                    <p><a href="drinks.html" class="text-white-50">Drinks</a></p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Support</h6>
+                    <p><a href="faq.html" class="text-white-50">FAQs</a></p>
+                    <p><a href="#" class="text-white-50">Support Center</a></p>
+                    <p><a href="contact.html" class="text-white-50">Contact Us</a></p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-white-50">
+                &copy; VUT Eats. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                         <div class="mb-3">
+                             <label for="loginEmail" class="form-label">Email address</label>
+                             <input type="email" name="email" class="form-control" id="loginEmail" required>
+                           </div>
+                           <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                             <input type="password" name="password" class="form-control" id="loginPassword" required>
+                              </div>
+                              <div id="login-message" class="mb-3"></div>
+                            <button type="submit" class="btn btn-primary vut-btn w-100">Sign In</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="text-muted mb-0">Not a member? <a href="registration.html" class="fw-bold">Sign Up Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Up Button -->
+    <a href="#" class="scroll-up" id="scroll-up">
+        <i class='bx bx-up-arrow-alt'></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Newsletter form handling
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive our newsletter soon.`);
+            this.reset();
+        });
+
+        // Check login status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            // Login form handling
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleLogin(this);
+                });
+            }
+        });
+
+        function checkLoginStatus() {
+            const user = localStorage.getItem('vut_user');
+            const loginLink = document.getElementById('login-link');
+            const userDropdown = document.getElementById('user-dropdown');
+            const usernameDisplay = document.getElementById('username-display');
+
+            if (user) {
+                const userData = JSON.parse(user);
+                if (loginLink) loginLink.style.display = 'none';
+                if (userDropdown) userDropdown.style.display = 'block';
+                if (usernameDisplay) usernameDisplay.textContent = userData.username;
+            } else {
+                if (loginLink) loginLink.style.display = 'block';
+                if (userDropdown) userDropdown.style.display = 'none';
+            }
+            updateCartCount();
+        }
+
+        function logout() {
+            fetch('assets/php/logout.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        localStorage.removeItem('vut_user');
+                        localStorage.removeItem('vut_cart');
+                        checkLoginStatus();
+                        window.location.href = 'index.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during logout:', error);
+                    localStorage.removeItem('vut_user');
+                    localStorage.removeItem('vut_cart');
+                    checkLoginStatus();
+                    window.location.href = 'index.html';
+                });
+        }
+
+        function handleLogin(form) {
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing In...';
+            
+            fetch('assets/php/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('login-message');
+                if (data.success) {
+                    messageDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                    localStorage.setItem('vut_user', JSON.stringify(data.user));
+                    setTimeout(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                        if (modal) {
+                            modal.hide();
+                        }
+                        checkLoginStatus();
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    messageDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('login-message').innerHTML = 
+                    '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('vut_cart') || '[]');
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                if (totalItems > 0) {
+                    cartCount.textContent = totalItems;
+                    cartCount.style.display = 'block';
+                } else {
+                    cartCount.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

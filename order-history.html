@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - VUT Eats</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* These classes are for styling the order status text */
+        .status-pending { 
+            color: #ffc107 !important; /* Yellow */
+            font-weight: bold;
+        }
+        .status-in-progress { 
+            color: #0dcaf0 !important; /* Cyan */
+            font-weight: bold;
+        }
+        .status-ready-for-collection { 
+            color: #198754 !important; /* Green */
+            font-weight: bold;
+        }
+        .status-cancelled { 
+            color: #dc3545 !important; /* Red */
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<!-- FIX: Added d-flex flex-column min-vh-100 to push footer down -->
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand vut-brand" href="index.html">
+                    <i class='bx bxs-bowl-rice'></i> VUT Eats
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <!-- User Section -->
+                    <div class="navbar-nav ms-lg-3 d-flex flex-row align-items-center">
+                        <div id="login-link" class="nav-item" style="display: none;">
+                            <a class="nav-link me-3" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class='bx bx-user fs-4'></i>
+                            </a>
+                        </div>
+                        <div id="user-dropdown" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-user fs-4'></i> <span id="username-display">User</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+                                <li><a class="dropdown-item active" href="order-history.html">Order History</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            </ul>
+                        </div>
+                        <a class="nav-link position-relative" href="cart.html">
+                            <i class='bx bx-shopping-bag fs-4'></i>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- FIX: Added flex-grow-1 to make main content fill vertical space -->
+    <main class="container flex-grow-1" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2>Your Order History</h2>
+                <p class="text-muted">Here are all the orders you've placed with us.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- This container will hold the orders -->
+                <div id="orders-container">
+                    <!-- Orders will be injected here by JS -->
+                </div>
+
+                <!-- This message shows if no orders are found -->
+                <div id="no-orders-message" class="text-center p-5 card shadow-sm border-0" style="display: none;">
+                    <i class='bx bx-receipt fs-1 text-muted'></i>
+                    <h4 class="mt-3">No orders found</h4>
+                    <p class="text-muted">You haven't placed any orders yet.</p>
+                    <div class="mt-3">
+                        <a href="shop.html" class="btn btn-primary vut-btn">Shop The Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container text-center text-white-50">
+            &copy; VUT Eats. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- Login Modal (needed for navbar) -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Note: This form is non-functional on this page, but required for the header -->
+                    <p>Please log in from the Home or Cart page.</p>
+                     <form id="loginForm-disabled">
+                         <div class="mb-3">
+                             <label for="loginEmail" class="form-label">Email address</label>
+                             <input type="email" name="email" class="form-control" id="loginEmail" disabled>
+                           </div>
+                           <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                             <input type="password" name="password" class="form-control" id="loginPassword" disabled>
+                            </div>
+                            <button type="submit" class="btn btn-primary vut-btn w-100" disabled>Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            loadOrderHistory();
+            updateCartCount();
+        });
+
+        function checkLoginStatus() {
+            const user = localStorage.getItem('vut_user');
+            const loginLink = document.getElementById('login-link');
+            const userDropdown = document.getElementById('user-dropdown');
+            const usernameDisplay = document.getElementById('username-display');
+            
+            if (user) {
+                const userData = JSON.parse(user);
+                if (loginLink) loginLink.style.display = 'none';
+                if (userDropdown) userDropdown.style.display = 'block';
+                if (usernameDisplay) usernameDisplay.textContent = userData.username;
+            } else {
+                // **SECURITY:** If user is not logged in, show access denied message
+                if (loginLink) loginLink.style.display = 'block';
+                if (userDropdown) userDropdown.style.display = 'none';
+
+                const mainContent = document.querySelector('main.container');
+                if (mainContent) {
+                    mainContent.innerHTML = `
+                        <div class="alert alert-danger text-center" role="alert" style="margin-top: 100px;">
+                            <h4 class="alert-heading">Access Denied</h4>
+                            <p>You must be logged in to view your order history.</p>
+                            <hr>
+                            <p class="mb-0">Please go to the <a href="index.html" class="alert-link">home page</a> to log in.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function loadOrderHistory() {
+            const user = JSON.parse(localStorage.getItem('vut_user'));
+            // If user isn't logged in, do nothing. checkLoginStatus handles the message.
+            if (!user) return; 
+
+            const allOrders = JSON.parse(localStorage.getItem('vut_orders') || '[]');
+            const userOrders = allOrders.filter(order => order.userEmail === user.email);
+            
+            const container = document.getElementById('orders-container');
+            const noOrdersMsg = document.getElementById('no-orders-message');
+            
+            if (!container || !noOrdersMsg) return; // Exit if elements aren't found
+
+            container.innerHTML = ''; // Clear previous content
+
+            if (userOrders.length === 0) {
+                noOrdersMsg.style.display = 'block';
+            } else {
+                noOrdersMsg.style.display = 'none';
+                
+                // Show newest orders first
+                userOrders.reverse().forEach(order => {
+                    container.innerHTML += createOrderCard(order);
+                });
+            }
+        }
+
+        function createOrderCard(order) {
+            // This function simulates status updates for demonstration
+            let orderStatus = order.status;
+            if (order.status === "Pending" && (Date.now() - order.orderId) > 120000) { // after 2 mins
+                 orderStatus = "In Progress";
+            }
+            if ((order.status === "Pending" || order.status === "In Progress") && (Date.now() - order.orderId) > 300000) { // after 5 mins
+                 orderStatus = "Ready for Collection";
+            }
+            
+            // This creates the correct CSS class name (e.g., "status-ready-for-collection")
+            let statusClass = `status-${orderStatus.toLowerCase().replace(/ /g, '-')}`;
+
+            // Build the list of items
+            let itemsHtml = '<ul class="list-group list-group-flush">';
+            order.items.forEach(item => {
+                itemsHtml += `<li class="list-group-item d-flex justify-content-between">
+                                <span>${item.name} (x${item.quantity})</span>
+                                <span>R${(item.price * item.quantity).toFixed(2)}</span>
+                              </li>`;
+            });
+            itemsHtml += '</ul>';
+
+            // FIX: Corrected 'class"' to 'class="'
+            return `
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-light d-flex flex-wrap justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-0">Order ID: ${order.orderId}</h6>
+                            <small class="text-muted">Placed: ${new Date(order.date).toLocaleString()}</small>
+                        </div>
+                        <span class="fw-bold ${statusClass}">${orderStatus}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-2">Items</h6>
+                                ${itemsHtml}
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <h6 class="mb-2">Summary</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Total:</span>
+                                        <strong>R${order.total.toFixed(2)}</strong>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Point:</span>
+                                        <strong>${order.collectionPoint}</strong>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Payment:</span>
+                                        <strong>${order.paymentMethod}</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function logout() {
+            localStorage.removeItem('vut_user');
+            localStorage.removeItem('vut_cart');
+            location.reload(); // Reload the current page
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('vut_cart') || '[]');
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                if (totalItems > 0) {
+                    cartCount.textContent = totalItems;
+                    cartCount.style.display = 'block';
+                } else {
+                    cartCount.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+

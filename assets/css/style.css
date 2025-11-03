@@ -1,0 +1,151 @@
+/* VUT Brand Colors */
+:root {
+    --vut-primary: #8C1515;
+    --vut-secondary: #A04040;
+    --vut-light: #F8F9FA;
+    --vut-dark: #343A40;
+}
+
+.vut-brand {
+    color: var(--vut-primary) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.vut-text {
+    color: var(--vut-primary) !important;
+}
+
+.vut-btn {
+    background-color: var(--vut-primary);
+    border-color: var(--vut-primary);
+    color: white;
+}
+
+.vut-btn:hover {
+    background-color: var(--vut-secondary);
+    border-color: var(--vut-secondary);
+    color: white;
+}
+
+.vut-btn-outline {
+    color: var(--vut-primary);
+    border-color: var(--vut-primary);
+}
+
+.vut-btn-outline:hover {
+    background-color: var(--vut-primary);
+    color: white;
+}
+
+.vut-list-group-item {
+    background-color: var(--vut-primary) !important;
+    border-color: var(--vut-primary) !important;
+    color: white !important;
+}
+
+.vut-page-link {
+    background-color: var(--vut-primary) !important;
+    border-color: var(--vut-primary) !important;
+    color: white !important;
+}
+
+/* Carousel Styles */
+.c-item {
+    height: 480px;
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.bg-dark-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Step Numbers */
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--vut-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 auto;
+}
+
+/* Scroll Up Button */
+.scroll-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--vut-primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.scroll-up.show {
+    opacity: 1;
+}
+
+.scroll-up:hover {
+    background: var(--vut-secondary);
+    color: white;
+}
+
+/* Card Hover Effects */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .c-item {
+        height: 300px;
+    }
+    
+    .carousel-caption {
+        padding: 10px;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Loading States */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Toast Customization */
+.toast {
+    z-index: 1060;
+}
